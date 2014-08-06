@@ -29,5 +29,20 @@ describe 'Station' do
       expect(Station.lookup_by_id(testy_station.id)).to eq testy_station
     end
   end
+
+  describe '#delete' do
+    it 'deletes a line from the database' do
+      test_station = Station.new("Blue")
+      test_station.save
+      testy_station = Station.new("Green")
+      testy_station.save
+      testicle_station = Station.new("Red")
+      testicle_station.save
+      testicular_station = Station.new("Yellow")
+      testicular_station.save
+      Station.delete(testicle_station.id)
+      expect(Station.all).to eq [test_station,testy_station,testicular_station]
+    end
+  end
 end
 

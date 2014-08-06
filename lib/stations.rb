@@ -29,4 +29,8 @@ class Station
     target_station = Station.new(result['name'], result['id'])
     target_station
   end
+
+  def self.delete station_id
+    DB.exec("DELETE FROM stations WHERE id = '#{station_id}';")
+  end
 end
