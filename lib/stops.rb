@@ -11,7 +11,7 @@ class Stop
     stops = []
     results = DB.exec("SELECT * FROM stops;")
     results.each do |stop|
-      stops << Stop.new(stop["station_id"], stop["line_id"])
+      stops << Stop.new(stop["station_id"], stop["line_id"], stop["id"])
     end
     stops
   end

@@ -105,7 +105,15 @@ end
 
 def list_stops
   linespace
-  puts Stop.all
+  puts "Stop ID : Line Name : Station "
+  puts "------------------------------"
+  stop_result = Stop.all
+  stop_result.each do |stop|
+    station_name = Station.lookup_by_id(stop.station_id).name
+    line_name = Line.lookup_by_id(stop.line_id).name
+    puts "#{stop.id}     #{line_name}       #{station_name}"
+    puts "------------------------------"
+  end
 end
 
 header
