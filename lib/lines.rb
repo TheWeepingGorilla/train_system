@@ -29,4 +29,8 @@ class Line
     target_line = Line.new(result['name'], result['id'])
     target_line
   end
+
+  def self.delete line_id
+    DB.exec("DELETE FROM lines WHERE id = '#{line_id}';")
+  end
 end
