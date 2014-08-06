@@ -32,5 +32,6 @@ class Line
 
   def self.delete line_id
     DB.exec("DELETE FROM lines WHERE id = '#{line_id}';")
+    DB.exec("DELETE FROM stops WHERE line_id = '#{line_id}';")
   end
 end

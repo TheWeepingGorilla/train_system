@@ -25,10 +25,13 @@ def main_menu
     linespace
     puts "SA > Add a station."
     puts "SL > List the stations."
+    puts "SD > Delete a station."
     puts "LA > Add a line."
     puts "LL > List the lines."
+    puts "LD > Delete a line."
     puts "AS > Add a stop."
     puts "LS > List the stops."
+    puts "DH > Display the header and menu."
     puts "XX > Exit."
     linespace
     main_choice = gets.chomp.upcase
@@ -36,14 +39,20 @@ def main_menu
       station_add
     elsif main_choice == "SL"
       station_list
+    elsif main_choice == "SD"
+      station_delete
     elsif main_choice == "LA"
       line_add
     elsif main_choice == "LL"
       line_list
+    elsif main_choice == "LD"
+      line_delete
     elsif main_choice == "AS"
       add_stop
     elsif main_choice == "LS"
       list_stops
+    elsif main_choice == "DH"
+      header
     elsif main_choice == "XX"
       puts "OK.  Have a good one."
       linespace
@@ -73,6 +82,14 @@ def station_list
   end
 end
 
+def station_delete
+  station_list
+  puts "Enter an ID to delete a station."
+  doomed_station = gets.chomp.to_i
+  Station.delete(doomed_station)
+  system 'clear'
+end
+
 def line_add
   puts "Enter name of line to add:"
   name = gets.chomp
@@ -89,6 +106,14 @@ def line_list
   results.each do |line|
     puts line.id + "       : " + line.name
   end
+end
+
+def line_delete
+  line_list
+  puts "Enter an ID to delete a line."
+  doomed_line = gets.chomp.to_i
+  Line.delete(doomed_line)
+  system 'clear'
 end
 
 def add_stop
