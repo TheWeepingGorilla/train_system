@@ -5,7 +5,11 @@ class Line
     @name = name
   end
 
-
+  def self.all
+    lines = []
+    #add stuff here
+    lines
+  end
 
 
 end
