@@ -23,4 +23,10 @@ class Line
   def == line_name
     line_name == @name
   end
+
+  def self.lookup_by_id line_id
+    result = DB.exec("SELECT * FROM lines WHERE id = '#{line_id}';")[0]
+    target_line = Line.new(result['name'], result['id'])
+    target_line
+  end
 end

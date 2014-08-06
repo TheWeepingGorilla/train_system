@@ -27,6 +27,8 @@ def main_menu
     puts "SL > List the stations."
     puts "LA > Add a line."
     puts "LL > List the lines."
+    puts "AS > Add a stop."
+    puts "LS > List the stops."
     puts "XX > Exit."
     linespace
     main_choice = gets.chomp.upcase
@@ -38,6 +40,10 @@ def main_menu
       line_add
     elsif main_choice == "LL"
       line_list
+    elsif main_choice == "AS"
+      add_stop
+    elsif main_choice == "LS"
+      list_stops
     elsif main_choice == "XX"
       puts "OK.  Have a good one."
       linespace
@@ -58,9 +64,12 @@ def station_add
 end
 
 def station_list
+  linespace
+  puts "Station ID : Station Name"
+  puts "-------------------------"
   results = Station.all
   results.each do |result|
-    puts result.name
+    puts result.id + "          : " + result.name
   end
 end
 
@@ -73,10 +82,30 @@ def line_add
 end
 
 def line_list
+  linespace
+  puts "Line ID : Line Name"
+  puts "-------------------"
   results = Line.all
   results.each do |line|
-    puts line.name
+    puts line.id + "       : " + line.name
   end
+end
+
+def add_stop
+  station_list
+  line_list
+  puts "Enter station id:"
+  station_id = gets.chomp.to_i
+  puts "Enter line id:"
+  line_id = gets.chomp.to_i
+  new_stop = Stop.new(station_id, line_id)
+  new_stop.save
+  system 'clear'
+end
+
+def list_stops
+  linespace
+  puts Stop.all
 end
 
 header
