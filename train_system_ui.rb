@@ -54,6 +54,7 @@ def station_add
   name = gets.chomp
   new_station = Station.new(name)
   new_station.save
+  system 'clear'
 end
 
 def station_list
@@ -64,11 +65,18 @@ def station_list
 end
 
 def line_add
-
+  puts "Enter name of line to add:"
+  name = gets.chomp
+  new_line = Line.new(name)
+  new_line.save
+  system 'clear'
 end
 
 def line_list
-
+  results = Line.all
+  results.each do |line|
+    puts line.name
+  end
 end
 
 header
