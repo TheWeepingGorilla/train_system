@@ -23,4 +23,10 @@ class Station
   def == station_name
     station_name == @name
   end
+
+  def self.lookup_by_id station_id
+    result = DB.exec("SELECT * FROM stations WHERE id = '#{station_id}';")[0]
+    target_station = Station.new(result['name'], result['id'])
+    target_station
+  end
 end

@@ -19,5 +19,15 @@ describe 'Station' do
       expect(Station.all).to eq [test_station]
     end
   end
+
+  describe '.lookup_by_id' do
+    it 'returns name of station when supplied a station id' do
+      test_station = Station.new("Downtown")
+      testy_station = Station.new("Uptown")
+      test_station.save
+      testy_station.save
+      expect(Station.lookup_by_id(testy_station.id)).to eq testy_station
+    end
+  end
 end
 
