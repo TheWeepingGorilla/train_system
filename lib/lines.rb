@@ -23,6 +23,4 @@ class Line
   def == line_name
     line_name == @name
   end
-
-
 end
