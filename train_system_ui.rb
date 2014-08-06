@@ -23,17 +23,22 @@ end
 def main_menu
   loop do
     linespace
-    puts "S > Add or view stations."
-    puts "L > Add or view lines."
-    puts "    "
-    puts "X > Exit."
+    puts "SA > Add a station."
+    puts "SL > List the stations."
+    puts "LA > Add a line."
+    puts "LL > List the lines."
+    puts "XX > Exit."
     linespace
     main_choice = gets.chomp.upcase
-    if main_choice == "S"
-      station_stuff
-    elsif main_choice == "L"
-      line_stuff
-    elsif main_choice == "X"
+    if main_choice == "SA"
+      station_add
+    elsif main_choice == "SL"
+      station_list
+    elsif main_choice == "LA"
+      line_add
+    elsif main_choice == "LL"
+      line_list
+    elsif main_choice == "XX"
       puts "OK.  Have a good one."
       linespace
       exit
@@ -44,10 +49,26 @@ def main_menu
   end
 end
 
-def station_stuff
+def station_add
+  puts "Enter name of station to add:"
+  name = gets.chomp
+  new_station = Station.new(name)
+  new_station.save
 end
 
-def line_stuff
+def station_list
+  results = Station.all
+  results.each do |result|
+    puts result.name
+  end
+end
+
+def line_add
+
+end
+
+def line_list
+
 end
 
 header
